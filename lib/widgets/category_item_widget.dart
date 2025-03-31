@@ -9,9 +9,13 @@ class CategoryItemWidget extends StatelessWidget {
   const CategoryItemWidget({super.key, required this.category});
 
   void _selectCategory(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-      return CategoriesMealsScreen();
-    }));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) {
+          return CategoriesMealsScreen(category: category);
+        },
+      ),
+    );
   }
 
   @override
