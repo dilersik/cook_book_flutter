@@ -1,3 +1,4 @@
+import 'package:cook_book_flutter/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -13,28 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: _MyHomePage(),
-    );
-  }
-}
-
-class _MyHomePage extends StatefulWidget {
-  const _MyHomePage();
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<_MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('DeliMeals'),
-      ),
-      body: Center(
-        child: Text('Navegar é preciso!!'),
-      ),
+      home: CategoriesScreen(),
     );
   }
 }
