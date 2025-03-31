@@ -1,4 +1,5 @@
 import 'package:cook_book_flutter/models/category.dart';
+import 'package:cook_book_flutter/screens/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItemWidget extends StatelessWidget {
@@ -14,7 +15,7 @@ class CategoryItemWidget extends StatelessWidget {
     //     },
     //   ),
     // );
-    Navigator.of(context).pushNamed("/category-meals", arguments: category);
+    Navigator.of(context).pushNamed(AppRoutes.CATEGORY_MEALS, arguments: category);
   }
 
   @override
