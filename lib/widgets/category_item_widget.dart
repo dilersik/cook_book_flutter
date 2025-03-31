@@ -1,21 +1,20 @@
 import 'package:cook_book_flutter/models/category.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/categories_meals_screen.dart';
-
 class CategoryItemWidget extends StatelessWidget {
   final Category category;
 
   const CategoryItemWidget({super.key, required this.category});
 
   void _selectCategory(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return CategoriesMealsScreen(category: category);
-        },
-      ),
-    );
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (_) {
+    //       return CategoryMealsScreen(category: category);
+    //     },
+    //   ),
+    // );
+    Navigator.of(context).pushNamed("/category-meals", arguments: category);
   }
 
   @override
