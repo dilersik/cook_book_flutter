@@ -20,7 +20,7 @@ class CategoriesScreen extends StatelessWidget {
         ),
         children:
             DUMMY_CATEGORIES.map((category) {
-              return CategoryItem(category: category);
+              return CategoryItemWidget(category: category);
             }).toList(),
       ),
     );
