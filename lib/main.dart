@@ -1,5 +1,6 @@
 import 'package:cook_book_flutter/screens/categories_screen.dart';
 import 'package:cook_book_flutter/screens/category_meals_screen.dart';
+import 'package:cook_book_flutter/screens/meal_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/app_routes.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
       routes: {
         // "/": (context) => CategoriesScreen(),
         AppRoutes.CATEGORY_MEALS: (context) => CategoryMealsScreen(),
+        AppRoutes.MEAL_DETAIL: (context) => MealDetailScreen(),
       },
     );
   }

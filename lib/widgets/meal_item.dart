@@ -1,4 +1,5 @@
 import 'package:cook_book_flutter/models/meal.dart';
+import 'package:cook_book_flutter/screens/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class MealItem extends StatelessWidget {
@@ -82,13 +83,7 @@ class MealItem extends StatelessWidget {
   }
 
   void _selectMeal(BuildContext context) {
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(
-    //     builder: (_) {
-    //       return MealDetailScreen(meal: meal);
-    //     },
-    //   ),
-    // );
+    Navigator.of(context).pushNamed(AppRoutes.MEAL_DETAIL, arguments: meal);
   }
 
 }
