@@ -13,7 +13,7 @@ class CategoryMealsScreen extends StatelessWidget {
     final categoryMeals = dummyMeals.where((meal) => meal.categories.contains(category.id)).toList();
 
     return Scaffold(
-      appBar: AppBar(title: Text(category.title)),
+      appBar: AppBar(title: Text(category.title), centerTitle: true),
       body: Center(
         child: ListView.builder(
           itemBuilder: (ctx, index) {
