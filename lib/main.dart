@@ -1,6 +1,6 @@
-import 'package:cook_book_flutter/screens/categories_screen.dart';
 import 'package:cook_book_flutter/screens/category_meals_screen.dart';
 import 'package:cook_book_flutter/screens/meal_detail_screen.dart';
+import 'package:cook_book_flutter/screens/tabs_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           titleLarge: TextStyle(fontSize: 20, fontFamily: "RobotoCondensed"),
         ),
       ),
-      home: CategoriesScreen(),
+      home: TabsScreen(),
       routes: {
         // "/": (context) => CategoriesScreen(),
         AppRoutes.CATEGORY_MEALS: (context) => CategoryMealsScreen(),
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           print("onGenerateRoute: ${settings.name}");
         }
         return MaterialPageRoute(
-          builder: (context) => CategoriesScreen(),
+          builder: (context) => TabsScreen(),
         );
       },
       onUnknownRoute: (settings) {
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
           print("onUnknownRoute: ${settings.name}");
         }
         return MaterialPageRoute(
-          builder: (context) => CategoriesScreen(),
+          builder: (context) => TabsScreen(),
         );
       },
     );
