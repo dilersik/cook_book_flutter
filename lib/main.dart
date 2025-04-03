@@ -1,3 +1,4 @@
+import 'package:cook_book_flutter/models/meal.dart';
 import 'package:cook_book_flutter/screens/category_meals_screen.dart';
 import 'package:cook_book_flutter/screens/meal_detail_screen.dart';
 import 'package:cook_book_flutter/screens/settings_screen.dart';
@@ -5,12 +6,21 @@ import 'package:cook_book_flutter/screens/tabs_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'data/dummy_data.dart';
 import 'screens/app_routes.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  List<Meal> _availableMeals = dummyMeals;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +47,7 @@ class MyApp extends StatelessWidget {
       home: TabsScreen(),
       routes: {
         // "/": (context) => CategoriesScreen(),
-        AppRoutes.CATEGORY_MEALS: (context) => CategoryMealsScreen(),
+        AppRoutes.CATEGORY_MEALS: (context) => CategoryMealsScreen(meals: _availableMeals),
         AppRoutes.MEAL_DETAIL: (context) => MealDetailScreen(),
         AppRoutes.SETTINGS: (context) => SettingsScreen(),
       },
