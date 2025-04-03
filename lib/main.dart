@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'data/dummy_data.dart';
+import 'models/settings.dart';
 import 'screens/app_routes.dart';
 
 void main() => runApp(MyApp());
@@ -49,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         // "/": (context) => CategoriesScreen(),
         AppRoutes.CATEGORY_MEALS: (context) => CategoryMealsScreen(meals: _availableMeals),
         AppRoutes.MEAL_DETAIL: (context) => MealDetailScreen(),
-        AppRoutes.SETTINGS: (context) => SettingsScreen(),
+        AppRoutes.SETTINGS: (context) => SettingsScreen(onSettingsChanged: _filterMeals),
       },
       onGenerateRoute: (settings) {
         if (kDebugMode) {
@@ -68,5 +69,18 @@ class _MyAppState extends State<MyApp> {
         );
       },
     );
+  }
+
+  void _filterMeals(Settings settings) {
+    setState(() {
+      _availableMeals = dummyMeals.where((meal) {
+        final filterGluten = settings.isGlutenFree && !meal.isGlutenFree;
+        final filterLactose = settings.isLactoseFree && !meal.isLactoseFree;
+        final filterVegan = settings.isVegan && !meal.isVegan;
+        final filterVegetarian = settings.isVegetarian && !meal.isVegetarian;
+
+        return !filterGluten && !filterLactose && !filterVegan && !filterVegetarian;
+      }).toList();
+    });
   }
 }

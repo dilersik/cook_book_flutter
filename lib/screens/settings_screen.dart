@@ -1,9 +1,10 @@
 import 'package:cook_book_flutter/models/settings.dart';
-import 'package:cook_book_flutter/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final Function(Settings) onSettingsChanged;
+
+  const SettingsScreen({super.key, required this.onSettingsChanged});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -16,7 +17,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
-      drawer: MainDrawer(),
       body: Column(
         children: [
           SizedBox(height: 20),
@@ -56,6 +56,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _createSwitchListTile(String title, String subtitle, bool value, Function(bool) onChanged) {
-    return SwitchListTile.adaptive(title: Text(title), subtitle: Text(subtitle), value: value, onChanged: onChanged);
+    return SwitchListTile.adaptive(
+      title: Text(title),
+      subtitle: Text(subtitle),
+      value: value,
+      onChanged: (value) {
+        onChanged(value);
+        widget.onSettingsChanged(settings);
+      },
+    );
   }
 }

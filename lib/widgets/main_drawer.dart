@@ -19,14 +19,16 @@ class MainDrawer extends StatelessWidget {
             leading: const Icon(Icons.restaurant),
             title: const Text('Meals'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(AppRoutes.HOME);
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(AppRoutes.HOME);
             },
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(AppRoutes.SETTINGS);
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(AppRoutes.SETTINGS);
             },
           ),
         ],
