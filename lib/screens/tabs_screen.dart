@@ -1,3 +1,4 @@
+import 'package:cook_book_flutter/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'categories_screen.dart';
@@ -21,6 +22,7 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: _pages[_selectedPageIndex]['title'], centerTitle: true),
+      drawer: MainDrawer(),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
