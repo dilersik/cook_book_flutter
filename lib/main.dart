@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Raleway",
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         textTheme: ThemeData.light().textTheme.copyWith(
-          titleLarge: TextStyle(fontSize: 20, fontFamily: "RobotoCondensed"),
+          titleLarge: TextStyle(fontSize: 20, fontFamily: "RobotoCondensed-Bold", fontWeight: FontWeight.bold),
         ),
       ),
       home: TabsScreen(),
