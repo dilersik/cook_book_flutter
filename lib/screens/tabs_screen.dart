@@ -1,3 +1,4 @@
+import 'package:cook_book_flutter/models/meal.dart';
 import 'package:cook_book_flutter/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -5,7 +6,9 @@ import 'categories_screen.dart';
 import 'favorite_screen.dart';
 
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({super.key});
+  final List<Meal> favoriteMeals;
+
+  const TabsScreen({super.key, required this.favoriteMeals});
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -13,10 +16,17 @@ class TabsScreen extends StatefulWidget {
 
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
-  final List<Map<String, Widget>> _pages = [
-    {'page': const CategoriesScreen(), 'title': const Text("Categories")},
-    {'page': const FavoriteScreen(), 'title': const Text("My Favorites")},
-  ];
+  late List<Map<String, Widget>> _pages;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _pages = [
+      {'page': const CategoriesScreen(), 'title': const Text("Categories")},
+      {'page': FavoriteScreen(favoriteMeals: widget.favoriteMeals), 'title': const Text("My Favorites")},
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -20,9 +20,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   Settings settings = Settings();
   List<Meal> _availableMeals = dummyMeals;
+  final List<Meal> _favoriteMeals = [];
 
   @override
   Widget build(BuildContext context) {
@@ -46,28 +46,24 @@ class _MyAppState extends State<MyApp> {
           titleLarge: TextStyle(fontSize: 20, fontFamily: "RobotoCondensed-Bold", fontWeight: FontWeight.bold),
         ),
       ),
-      home: TabsScreen(),
+      home: TabsScreen(favoriteMeals: _favoriteMeals),
       routes: {
         // "/": (context) => CategoriesScreen(),
         AppRoutes.CATEGORY_MEALS: (context) => CategoryMealsScreen(meals: _availableMeals),
-        AppRoutes.MEAL_DETAIL: (context) => MealDetailScreen(),
+        AppRoutes.MEAL_DETAIL: (context) => MealDetailScreen(onToggleFavorite: _toggleFavorite, isFavorite: _isFavorite,),
         AppRoutes.SETTINGS: (context) => SettingsScreen(settings: settings, onSettingsChanged: _filterMeals),
       },
       onGenerateRoute: (settings) {
         if (kDebugMode) {
           print("onGenerateRoute: ${settings.name}");
         }
-        return MaterialPageRoute(
-          builder: (context) => TabsScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => TabsScreen(favoriteMeals: _favoriteMeals));
       },
       onUnknownRoute: (settings) {
         if (kDebugMode) {
           print("onUnknownRoute: ${settings.name}");
         }
-        return MaterialPageRoute(
-          builder: (context) => TabsScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => TabsScreen(favoriteMeals: _favoriteMeals));
       },
     );
   }
@@ -75,14 +71,29 @@ class _MyAppState extends State<MyApp> {
   void _filterMeals(Settings settings) {
     setState(() {
       this.settings = settings;
-      _availableMeals = dummyMeals.where((meal) {
-        final filterGluten = settings.isGlutenFree && !meal.isGlutenFree;
-        final filterLactose = settings.isLactoseFree && !meal.isLactoseFree;
-        final filterVegan = settings.isVegan && !meal.isVegan;
-        final filterVegetarian = settings.isVegetarian && !meal.isVegetarian;
+      _availableMeals =
+          dummyMeals.where((meal) {
+            final filterGluten = settings.isGlutenFree && !meal.isGlutenFree;
+            final filterLactose = settings.isLactoseFree && !meal.isLactoseFree;
+            final filterVegan = settings.isVegan && !meal.isVegan;
+            final filterVegetarian = settings.isVegetarian && !meal.isVegetarian;
 
-        return !filterGluten && !filterLactose && !filterVegan && !filterVegetarian;
-      }).toList();
+            return !filterGluten && !filterLactose && !filterVegan && !filterVegetarian;
+          }).toList();
     });
+  }
+
+  void _toggleFavorite(Meal meal) {
+    setState(() {
+      if (_favoriteMeals.contains(meal)) {
+        _favoriteMeals.remove(meal);
+      } else {
+        _favoriteMeals.add(meal);
+      }
+    });
+  }
+
+  bool _isFavorite(Meal meal) {
+    return _favoriteMeals.contains(meal);
   }
 }
