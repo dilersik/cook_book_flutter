@@ -2,16 +2,23 @@ import 'package:cook_book_flutter/models/settings.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
+  final Settings settings;
   final Function(Settings) onSettingsChanged;
 
-  const SettingsScreen({super.key, required this.onSettingsChanged});
+  const SettingsScreen({super.key, required this.settings, required this.onSettingsChanged});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  var settings = Settings();
+  late Settings settings;
+
+  @override
+  void initState() {
+    super.initState();
+    settings = widget.settings;
+  }
 
   @override
   Widget build(BuildContext context) {
